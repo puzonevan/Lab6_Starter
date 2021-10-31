@@ -6,7 +6,10 @@
 const recipes = [
   'https://introweb.tech/assets/json/ghostCookies.json',
   'https://introweb.tech/assets/json/birthdayCake.json',
-  'https://introweb.tech/assets/json/chocolateChip.json'
+  'https://introweb.tech/assets/json/chocolateChip.json',
+  '../assets/recipes/straganoff.json',
+  '../assets/recipes/garlicChicken.json',
+  '../assets/recipes/bakedChicken.json'
 ];
 
 // Once all of the recipes that were specified above have been fetched, their
@@ -91,4 +94,6 @@ function bindShowMore() {
   // in the recipeData object where you stored them/
 
   // Part 2 Explore - TODO
+
+  
 }
