@@ -51,6 +51,7 @@ async function fetchRecipes() {
       .then(response => response.json())
       .then(data => {
         recipeData[recipe] = data;
+        console.log(data);
         if (Object.keys(recipeData).length === recipes.length){
           resolve(true);
         }
@@ -78,7 +79,7 @@ function createRecipeCards() {
     recipeCard.data = recipeData[recipeLink];
     main.appendChild(recipeCard);
   }
-  
+
 }
 
 function bindShowMore() {
