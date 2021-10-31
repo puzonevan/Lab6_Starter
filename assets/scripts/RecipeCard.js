@@ -148,7 +148,7 @@ class RecipeCard extends HTMLElement {
       // Star Image
       const starImage = document.createElement("img");
       let floorRating = Math.floor(ratingValue);
-      starImage.setAttribute("src", `/assets/images/icons/${floorRating}-star.svg`);
+      starImage.setAttribute("src", `https://puzonevan.github.io/Lab6_Starter/assets/images/icons/${floorRating}-star.svg`);
       starImage.setAttribute("alt", `${floorRating} stars`);
       rating.appendChild(starImage);
 
