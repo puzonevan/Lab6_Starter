@@ -1,5 +1,5 @@
 // main.js
-// more main.js
+
 
 // Here is where the recipes that you will fetch.
 // Feel free to add your own here for part 2, if they are local files simply add their path as a string.
@@ -44,6 +44,20 @@ async function fetchRecipes() {
     // in the recipes folder and fetch them from there. You'll need to add their paths to the recipes array.
 
     // Part 1 Expose - TODO
+
+    
+    recipes.forEach((recipe) =>{
+      fetch(recipe)
+      .then(response => response.json())
+      .then(data => {
+        recipeData[recipe] = data;
+        if (Object.keys(recipeData).length === recipes.length){
+          resolve(true);
+        }
+      })
+      .catch((error) => reject(false));
+    });
+
   });
 }
 
