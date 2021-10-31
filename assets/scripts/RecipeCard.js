@@ -162,8 +162,22 @@ class RecipeCard extends HTMLElement {
       rating.appendChild(numberRating);
     }
     
-    
     card.appendChild(rating);
+
+    // Time 
+    const time = document.createElement("time");
+    let totalTime = convertTime(searchForKey(data, "totalTime"));
+    time.innerHTML = totalTime;
+
+    card.appendChild(time);
+
+    // Ingredients
+    const ingredients = document.createElement("p");
+    ingredients.setAttribute("class", "ingredients");
+    let ingredientList = createIngredientList(searchForKey(data, "recipeIngredient"));
+    ingredients.innerHTML = ingredientList;
+    
+    card.appendChild(ingredients);
 
     
 
