@@ -103,12 +103,71 @@ class RecipeCard extends HTMLElement {
     // created in the constructor()
 
     // Part 1 Expose - TODO
+
+    // Food Image 
     const foodImg = document.createElement("img");
+
     let imgSrc = getUrl(searchForKey(data, "image")) || getUrl(searchForKey(data, "@graph")[2]);
+    let imgAlt = data.name || searchForKey(data["@graph"][2], "caption") || searchForKey(data["@graph"][5], "headline");
+
     foodImg.setAttribute("src", imgSrc);
+    foodImg.setAttribute("alt", imgAlt);
+
     card.appendChild(foodImg);
+
+
+    // Title
+    const title = document.createElement("p");
+    title.setAttribute("class", "title");
+
+    const titleLink = document.createElement("a");
+    titleLink.innerHTML = searchForKey(data, "headline");
+    titleLink.setAttribute("href", getUrl(data));
+
+    title.appendChild(titleLink);
+
+    card.appendChild(title);
+
+
+    // Organization 
+    const organization = document.createElement("p");
+    organization.setAttribute("class", "organization");
+    organization.innerHTML = getOrganization(data);
+    card.appendChild(organization);
+
+    // Rating 
+    const rating = document.createElement("div");
+    const numberRating = document.createElement("span");
+    rating.setAttribute("class", "rating");
+    
+    let ratingValue = searchForKey(data, "ratingValue");
+    if(ratingValue){
+      numberRating.innerHTML = ratingValue;
+      rating.appendChild(numberRating);
+
+      // Star Image
+      const starImage = document.createElement("img");
+      let floorRating = Math.floor(ratingValue);
+      starImage.setAttribute("src", `/assets/images/icons/${floorRating}-star.svg`);
+      starImage.setAttribute("alt", `${floorRating} stars`);
+      rating.appendChild(starImage);
+
+      // Total number of reviews 
+      const reviewCount = document.createElement("span");
+      let ratingCount = searchForKey(data, "ratingCount");
+      reviewCount.innerHTML = `(${ratingCount})`;
+      rating.appendChild(reviewCount);
+    }else{
+      numberRating.innerHTML = "No Reviews";
+      rating.appendChild(numberRating);
+    }
+    
+    
+    card.appendChild(rating);
+
     
 
+    // Attach to Shadow DOM 
     this.shadowRoot.appendChild(styleElem);
     this.shadowRoot.appendChild(card);
     
